@@ -1,9 +1,9 @@
-import { Col, Image, InputNumber, Row } from 'antd'
+import { Col, Image, Row } from 'antd'
 import React from 'react'
 import imageProduct from '../../assets/images/test.jpg'
 import imageProductSmall from '../../assets/images/imgsmall.jpg'
 import { WrapperAddressProduct, WrapperInputNumber, WrapperPriceProduct, WrapperPriceTextProduct, WrapperQualityProduct, WrapperStyleColImage, WrapperStyleImageSmall, WrapperStyleNameProduct, WrapperStyleTextSell } from './style'
-import { MinusOutlined, PlusOutlined, StarFilled, StarOutlined } from '@ant-design/icons'
+import { MinusOutlined, PlusOutlined, StarFilled } from '@ant-design/icons'
 import ButtonComponent from '../ButtonComponent/ButtonComponent'
 
 
@@ -12,9 +12,6 @@ const ProductDetailsComponent = () => {
 	const onChange = () => { }
 	var num = 3;
 
-	function handleClick() {
-		num = num++
-	}
 	return (
 		<div>
 			<Row style={{ padding: '16px', background: '#fff' }}>
@@ -83,7 +80,6 @@ const ProductDetailsComponent = () => {
 					</div>
 					<div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
 						<ButtonComponent
-							bordered={false}
 							size={40}
 							styleButton={{
 								background: 'rgb(255, 66, 78)',
@@ -96,13 +92,11 @@ const ProductDetailsComponent = () => {
 							styleTextButton={{ color: '#fff' }}
 						/>
 						<ButtonComponent
-							bordered={false}
 							size={40}
 							styleButton={{
 								border: '1px solid rgb(10, 104, 255)',
 								height: '48px',
 								width: '220px',
-								border: '1px solid rgb(10, 104, 255)',
 								borderRadius: '4px'
 							}}
 							textButon={'Mua trước trả sau'}

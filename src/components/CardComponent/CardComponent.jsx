@@ -1,6 +1,4 @@
 import { StarFilled } from '@ant-design/icons'
-import { Card } from 'antd'
-import Meta from 'antd/es/card/Meta'
 import React from 'react'
 import { StyleNameProduct, WrapperCardStyle, WrapperDiscountText, WrapperImageStyle, WrapperPriceText, WrapperReportText } from './style'
 import logo from '../../assets/images/logo_chinhhang.png'
