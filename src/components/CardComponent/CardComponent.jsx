@@ -3,7 +3,8 @@ import React from 'react'
 import { StyleNameProduct, WrapperCardStyle, WrapperDiscountText, WrapperImageStyle, WrapperPriceText, WrapperReportText } from './style'
 import logo from '../../assets/images/logo_chinhhang.png'
 
-const CardComponent = () => {
+const CardComponent = (props) => {
+	const { name, image, type, price, countInStock, rating, description, discount, selled } = props
 	return (
 		<WrapperCardStyle
 			hoverable
@@ -12,17 +13,18 @@ const CardComponent = () => {
 			cover={< img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
 		>
 			<WrapperImageStyle src={logo} alt='logo' />
-			<StyleNameProduct>Iphone</StyleNameProduct>
+			<StyleNameProduct>{name}</StyleNameProduct>
 			<WrapperReportText>
 				<span style={{ marginRight: '4px' }}>
-					<span>4.96</span>
+					<span>{rating}</span>
 					<StarFilled style={{ fontSize: '12px', color: 'rgb(255, 196, 0)' }} />
 				</span>
-				<span> | Đã bán 1000+</span>
+				<span> | Đã bán {selled || 1000}+</span>
 			</WrapperReportText>
-			<WrapperPriceText>1.000.000đ
+			<WrapperPriceText>
+				<span style={{ marginRight: '8px' }}>{price}đ</span>
 				<WrapperDiscountText>
-					-5%
+					{discount || 5}%
 				</WrapperDiscountText>
 			</WrapperPriceText>
 		</WrapperCardStyle >

@@ -34,7 +34,6 @@ export const WrapperIconHeader = styled.span`
 export const WrapperContentPopup = styled.p`
 	cursor:pointer;	
 	&:hover{
-		background: red;
-		color:#fff;
+		color:red;
 	}
 `

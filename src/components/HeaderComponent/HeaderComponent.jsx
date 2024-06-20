@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { Badge, Button, Col, Popover } from "antd"
+import React, { useEffect, useState } from 'react'
+import { Badge, Col, Popover } from "antd"
 import { WrapperHeader, WrapperTextHeader, WrapperHeaderAccount, WrapperTextHeaderSmall, WrapperContentPopup } from './style'
 // import Search from 'antd/lib/transfer/search';
 import {
@@ -15,10 +15,13 @@ import { resetUser } from '../../redux/slices/userSlide'
 import Loading from '../../components/LoadingComponent/Loading'
 
 
+
 const HeaderComponent = () => {
 	const navigate = useNavigate()
 	const user = useSelector((state) => state.user)
 	const dispatch = useDispatch()
+	const [userName, setUserName] = useState('')
+	const [userAvatar, setUserAvatar] = useState('')
 	const [loading, setLoading] = useState(false)
 	const handleNavigateLogin = () => {
 		navigate('/sign-in')
@@ -30,10 +33,18 @@ const HeaderComponent = () => {
 		setLoading(false)
 	}
 
+
+	useEffect(() => {
+		// setLoading(true)
+		setUserName(user?.name)
+		setUserAvatar(user?.avatar)
+		// setLoading(false)
+	}, [user?.name, user?.avatar])
+
 	const content = (
 		<div>
 			<WrapperContentPopup onClick={handleLogout}>Đăng xuất</WrapperContentPopup>
-			<WrapperContentPopup>Thông tin người dùng</WrapperContentPopup>
+			<WrapperContentPopup onClick={() => navigate('/profile-user')}>Thông tin người dùng</WrapperContentPopup>
 		</div>
 	);
 
@@ -53,11 +64,24 @@ const HeaderComponent = () => {
 				<Col span={6} style={{ display: 'flex', gap: '20px', alignItems: 'center' }}>
 					<Loading isPending={loading}>
 						<WrapperHeaderAccount>
-							<UserOutlined style={{ fontSize: '30px' }} />
-							{user?.name ? (
+							{userAvatar ? (
+								<>
+									<img src={userAvatar} style={{
+										height: "30px",
+										width: "30px",
+										borderRadius: "50%",
+										objectFit: "cover"
+									}} alt='avatar'></img>
+								</>
+							) : (
+								<UserOutlined style={{ fontSize: '30px' }} />
+							)}
+
+							{/* <UserOutlined style={{ fontSize: '30px' }} /> */}
+							{user?.access_token ? (
 								<>
 									<Popover placement="bottom" content={content}>
-										<div style={{ cursor: 'pointer' }}>{user.name}</div>
+										<div style={{ cursor: 'pointer' }}>{userName || 'User'}</div>
 									</Popover>
 								</>
 							) : (
@@ -74,6 +98,9 @@ const HeaderComponent = () => {
 					</Loading>
 					<div>
 						<Badge count={4} size='small' />
+
+
+
 						<ShoppingCartOutlined style={{ fontSize: '30px', color: '#fff' }} />
 						<WrapperTextHeaderSmall>Giỏ hàng</WrapperTextHeaderSmall>
 					</div>
